@@ -1,8 +1,9 @@
 import  { setMarkDownContent }  from '../features/markdown/MarkDownSlice';
+import Header from './Header';
+import '../styles/Markdown.css'
 import ReactMarkdown from 'react-markdown';
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux";
-
 function MarkDown() {
     const markdownContent = useSelector((state) => state.markDown.content)
     console.log(markdownContent)
@@ -11,13 +12,16 @@ function MarkDown() {
  
     const handleMarkdownChange = (e) => {
         const content = e.target.value
-        dispatch(setMarkDownContent(content))
+        dispatch(
+            setMarkDownContent(content)
+        )
     }
 
     return (
         <div>
-            <div>
-                <textarea id="editor" onChange={handleMarkdownChange} 
+            <div className='textarea'>
+                <Header />
+                <textarea className='editor' id="editor" onChange={handleMarkdownChange} 
                 value={markdownContent} 
                 placeholder="Type your GitHub-flavored Markdown here (e.g., ## Heading, *italic*, **bold**, etc.)..." >
                 </textarea>
@@ -26,7 +30,7 @@ function MarkDown() {
             <div id="preview">
                 <ReactMarkdown children={markdownContent} />
             </div>
-        </div>
+        </div>  
     )
 }
 
