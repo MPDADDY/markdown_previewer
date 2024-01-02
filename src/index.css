@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+:root {
+  --header-background:  rgb(19, 126, 138);
+}
 
 body {
   margin: 0;
@@ -22,6 +25,10 @@ h1 {
 }
 
 .header {
-  background-color: rgb(19, 126, 138);
+  background-color: var(--header-background);
   border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 10px;
 }

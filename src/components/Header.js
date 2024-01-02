@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Header() {
+function Header({children}) {
   return (
     <div className='header'>
-      <h2>Editor</h2>
+      {children}
     </div>
   )
 }
