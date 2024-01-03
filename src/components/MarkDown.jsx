@@ -1,14 +1,15 @@
 import  { setMarkDownContent }  from '../features/markdown/MarkDownSlice';
+import React, { useState } from 'react';
 import Maximize from './Maximize.svg'
 import Minimize from './Minimize.svg'
 import Button from './Button';
 import Header from './Header';
-import '../styles/Markdown.css'
+import '../styles/Markdown.css';
 import ReactMarkdown from 'react-markdown';
-import React from 'react'
 import { useSelector, useDispatch } from "react-redux";
 function MarkDown() {
-    const markdownContent = useSelector((state) => state.markDown.content)
+    const markdownContent = useSelector((state) => state.markDown.content);
+    const [maxMin, setMaxMin] = useState({editor: false, preview:false});
     console.log(markdownContent)
     const dispatch = useDispatch()
 
@@ -19,14 +20,27 @@ function MarkDown() {
             setMarkDownContent(content)
         )
     }
+    console.log(maxMin)
+
+    const handleClickEditor = () => {
+        setMaxMin({...maxMin, editor: !maxMin.editor})
+      }
+    const handleClickPreview = () => {
+        setMaxMin({...maxMin, preview: !maxMin.preview})
+      }
 
     return (
         <div>
             <div className='textarea'>
                 <Header>
                     <h2>Editor</h2>
-                    <Button>
-                       <img src={Maximize} alt="Maximize" /> 
+                    <Button onClick={handleClickEditor}>
+                        {
+                            maxMin.editor ?
+                            <img src={Minimize} alt="Minimize" />:
+                            <img src={Maximize} alt="Maximize" /> 
+                        }
+                        
                     </Button>
                 </Header>
                 <textarea className='editor' id="editor" onChange={handleMarkdownChange} 
@@ -38,8 +52,12 @@ function MarkDown() {
             <div className='preview_container'>
                 <Header>
                     <h2>Preview</h2>
-                    <Button>
-                        <img src={Maximize} alt="Maximize" /> 
+                    <Button onClick={handleClickPreview}>
+                    {
+                            maxMin.preview ?
+                            <img src={Minimize} alt="Minimize" />:
+                             <img src={Maximize} alt="Maximize" /> 
+                        } 
                     </Button>
                 </Header> 
                 <div id="preview">

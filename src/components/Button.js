@@ -1,11 +1,8 @@
 import React from 'react';
 
-function Button({children}) {
-  const handleclick = () => {
-    alert('I love you')
-  }
+function Button({onClick,children}) {
   return (
-    <button onClick={handleclick}>
+    <button onClick={onClick}>
         {children}
     </button>
   )
