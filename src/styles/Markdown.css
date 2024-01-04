@@ -28,6 +28,19 @@ h2 {
     margin-bottom: none;
 }
 
+.editorFull {
+    width: 100%;
+    height: 100vh;
+    outline: none;
+    background-color: var(--editorBacgroung);
+    resize: none;
+    margin-bottom: none;
+}
+
+.none {
+    display: none;
+}
+
 .preview_container {
     border-radius: 5px;
     width: 70%;

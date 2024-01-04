@@ -1,5 +1,5 @@
 import  { setMarkDownContent }  from '../features/markdown/MarkDownSlice';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Maximize from './Maximize.svg'
 import Minimize from './Minimize.svg'
 import Button from './Button';
@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 function MarkDown() {
     const markdownContent = useSelector((state) => state.markDown.content);
     const [maxMin, setMaxMin] = useState({editor: false, preview:false});
+    const [fullScreen, setfulSCreen] = useState({editor:'editor', preview: 'preview_container' , hideTextarea: 'textarea'})
     console.log(markdownContent)
     const dispatch = useDispatch()
 
@@ -29,9 +30,19 @@ function MarkDown() {
         setMaxMin({...maxMin, preview: !maxMin.preview})
       }
 
+useEffect(() => {
+    setfulSCreen((prevFullScreen) => ({
+      ...prevFullScreen,
+      editor: maxMin.editor ? 'editorFull' : maxMin.preview ? 'none' : 'editor',
+      preview: !maxMin.editor ? 'preview_container': !maxMin.preview? 'none': 'none',
+      hideTextarea: maxMin.preview ? 'none' : 'textarea'
+    }));
+  }, [maxMin.editor, maxMin.preview]);
+  
+
     return (
         <div>
-            <div className='textarea'>
+            <div className={fullScreen.hideTextarea}>
                 <Header>
                     <h2>Editor</h2>
                     <Button onClick={handleClickEditor}>
@@ -43,13 +54,13 @@ function MarkDown() {
                         
                     </Button>
                 </Header>
-                <textarea className='editor' id="editor" onChange={handleMarkdownChange} 
+                <textarea className= {fullScreen.editor} id="editor" onChange={handleMarkdownChange} 
                 value={markdownContent} 
                 placeholder="Type your GitHub-flavored Markdown here (e.g., ## Heading, *italic*, **bold**, etc.)..." >
                 </textarea>
             </div>
 
-            <div className='preview_container'>
+            <div className={fullScreen.preview}>
                 <Header>
                     <h2>Preview</h2>
                     <Button onClick={handleClickPreview}>
