@@ -71,7 +71,7 @@ useEffect(() => {
                         } 
                     </Button>
                 </Header> 
-                <div id="preview">
+                <div className='preview' id="preview">
                     <ReactMarkdown children={markdownContent} />
                 </div>
             </div>

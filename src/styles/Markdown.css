@@ -4,6 +4,10 @@
     --shadows: 1px 2px 3px 5px rgba(138, 131, 131, 0.5);
 }
 
+* {
+    transition: 500ms;
+}
+
 h2 {
     height: auto;
     margin: 0;
@@ -26,6 +30,7 @@ h2 {
     background-color: var(--editorBacgroung);
     resize: none;
     margin-bottom: none;
+    padding: 5px;
 }
 
 .editorFull {
@@ -35,6 +40,7 @@ h2 {
     background-color: var(--editorBacgroung);
     resize: none;
     margin-bottom: none;
+    padding: 5px;
 }
 
 .none {
@@ -49,7 +55,11 @@ h2 {
     margin-left: auto;
     background-color: var(--editorBacgroung);
     border: 1px solid ;
-    box-shadow: var(--shadows)
+    box-shadow: var(--shadows);
+}
+
+.preview {
+    padding: 8px;
 }
 
 button {
@@ -57,7 +67,6 @@ button {
     background-color: transparent;
 }
 
-img:hover {
-  cursor: pointer;
-  color: aqua;
+button:hover {
+    cursor: pointer;
 }
