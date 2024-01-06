@@ -12,6 +12,9 @@
     "react-markdown": "^9.0.1",
     "react-redux": "^9.0.4",
     "react-scripts": "5.0.1",
+    "remark": "^15.0.1",
+    "remark-cli": "^12.0.0",
+    "remark-gfm": "^4.0.0",
     "uuid": "^9.0.1",
     "web-vitals": "^2.1.4"
   },

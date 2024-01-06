@@ -7,7 +7,9 @@ import Header from './Header';
 import '../styles/Markdown.css';
 import ReactMarkdown from 'react-markdown';
 import { useSelector, useDispatch } from "react-redux";
-function MarkDown() {
+import gfm from "remark-gfm";
+function MarkDown({renderers, ...props}) {
+
     const markdownContent = useSelector((state) => state.markDown.content);
     const [maxMin, setMaxMin] = useState({editor: false, preview:false});
     const [fullScreen, setfulSCreen] = useState({editor:'editor', preview: 'preview_container' , hideTextarea: 'textarea'})
@@ -17,6 +19,7 @@ function MarkDown() {
    document.title = 'Markdown_previewer'
     const handleMarkdownChange = (e) => {
         const content = e.target.value
+        content.replace(/\n/g,'<br />')
         dispatch(
             setMarkDownContent(content)
         )
@@ -72,7 +75,8 @@ useEffect(() => {
                     </Button>
                 </Header> 
                 <div className='preview' id="preview">
-                    <ReactMarkdown children={markdownContent} />
+                    <ReactMarkdown unwrapDisallowed pluggins= {[gfm]} children={markdownContent} />
+                    
                 </div>
             </div>
         </div>  
