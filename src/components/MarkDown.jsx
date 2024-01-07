@@ -19,7 +19,7 @@ function MarkDown({renderers, ...props}) {
    document.title = 'Markdown_previewer'
     const handleMarkdownChange = (e) => {
         const content = e.target.value
-        content.replace(/\n/g,'<br />')
+        content.replace(/(\r\n|\r|\n)/g, '<br />');
         dispatch(
             setMarkDownContent(content)
         )
@@ -75,7 +75,9 @@ useEffect(() => {
                     </Button>
                 </Header> 
                 <div className='preview' id="preview">
-                    <ReactMarkdown unwrapDisallowed pluggins= {[gfm]} children={markdownContent} />
+                    <ReactMarkdown unwrapDisallowed pluggins= {[gfm]}>
+                    {markdownContent}
+                      </ReactMarkdown>
                     
                 </div>
             </div>
@@ -84,3 +86,5 @@ useEffect(() => {
 }
 
 export default MarkDown
+
+

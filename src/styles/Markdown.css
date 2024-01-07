@@ -79,3 +79,14 @@ button {
 button:hover {
     cursor: pointer;
 }
+
+p > code {
+    display: inline-block;
+    background-color:white;
+}
+
+pre > code {
+    display: block;
+    background-color: white;
+    padding: 5px;
+}
